@@ -22,3 +22,7 @@ https://i.imgur.com/WRm3E98.png
 https://i.imgur.com/bt4xSdQ.png
 {% endcapture %}
 {% include elements/carousel.html %}
+
+### Colaboradores
+- Ivan Aldavera > [GitHub](https://github.com/zarzamora01)
+- Ivan Vargas > [GitHub](https://github.com/ivanvg98)
