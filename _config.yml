@@ -1,0 +1,101 @@
+### Site Settings ###
+title               : Vladimir Azpeitia
+description         : >-
+                      Mi nombre es Vladimir, soy desarrollador de software 
+                      y entusiasta de la tecnología. Me apasiona escribir, 
+                      la lectura y salir a caminar al aire libre.
+baseurl             : ""                     # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
+repository          : vazpeitiah/vazpeitiah.github.io     # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
+remote_theme        : YoussefRaafatNasry/portfolYOU
+open_new_tab        : true                             # Opens external URLs in new tab (works for posts, projects and navbar only)
+
+
+### Plugins ###
+plugins:
+  - jemoji
+
+
+### Navbar Settings ###
+nav_exclude:                                            # The following paths are excluded from navbar
+  - pages/tags.html
+  - pages/404.html
+  - pages/index.md
+  - documentation/**
+  - documentation/partials/**                           # For Documentation Only
+
+
+### Author Info ###
+author:
+  name              : Vladimir Azpeitia Hernández
+  image             : https://i.imgur.com/uyDNQnn.jpg
+#  behance           : vazpeitiah
+# dribbble          : vazpeitiah
+  email             : vazpeitiah@gmail.com
+  facebook          : vazpeitiah
+  github            : vazpeitiah
+# gitlab            : vazpeitiah
+  instagram         : vazpeitiah
+# kaggle            : vazpeitiah
+  linkedin          : vazpeitiah
+  medium            : vazpeitiah
+# soundcloud        : vazpeitiah
+# spotify           : vazpeitiah
+# stackoverflow     : your_user_id
+# tumblr            : vazpeitiah.tumblr.com
+# twitch            : vazpeitiah
+  twitter           : vazpeitiah
+# vimeo             : vazpeitiah
+# youtube           : your_channel_name
+# keybase           : vazpeitiah
+
+
+### Posts ###
+permalink: /blog/:title
+
+
+### Collections ###
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name
+  elements:                                             # For Documentation Only
+    output: true                                        # For Documentation Only
+
+
+### Disqus ###
+disqus:
+  shortname: your-short-name-disqus                     # Your website Shortname on disqus
+
+
+### Analytics ###
+analytics:
+  enabled: false                                        # Set true to enable analytics
+  google:
+    tracking_id: your-google-tracking-id
+
+
+### Defaults for collections ###
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "page"
+  - scope:                                              # For Documentation Only
+      path: ""                                          # For Documentation Only
+      type: "elements"                                  # For Documentation Only
+    values:                                             # For Documentation Only
+      layout: "element"                                 # For Documentation Only
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      comments: false                                   # Set to true to enable disqus comments
+
+
+### Exclude from processing ###
+exclude:
+  - README.md
+  - CONTRIBUTING.md
+  - LICENSE
+  - "*.log"
