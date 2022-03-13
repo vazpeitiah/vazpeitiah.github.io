@@ -5,6 +5,9 @@ description: Aplicación de escritorio para el control de inventarios de una vet
 ---
 
 # Ponydesk
+
+{% include elements/button.html link="https://github.com/vazpeitiah/ponydesk" text="GitHub" style="primary" size="sm" %}
+
 ---
 
 Ponyvet es un sistema, implementado en java, para administrar tu veterinaria. Te permite tener un mejor control de tu información para brindar un servicio más eficiente a tus clientes. 
@@ -88,5 +91,3 @@ https://i.imgur.com/1GpTfeH.png
 * [x]  Hacer mas responsiva la aplicación
 * [ ]  Cuando se actualize mostrar en verde el registro actualizado
 * [ ]  Implementar botón de salir en cada submenu
-
-{% include elements/button.html link="https://github.com/vazpeitiah/ponydesk" text="Ver código en GitHub" block=true %}
