@@ -1,7 +1,8 @@
 ---
 name: Ponydesk
 tools: [Java, Hibernate, MySQL]
-description: Aplicación de escritorio para el control de inventarios de una veterinaria.
+image: /assets/img/PONYDESK.png
+description: Aplicación para el control de inventarios de una veterinaria.
 ---
 
 # Ponydesk
