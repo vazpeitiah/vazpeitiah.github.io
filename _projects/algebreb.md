@@ -1,6 +1,6 @@
 ---
 name: Algebreb
-tools: [React, MongoDB, Flask, Sympy]
+tools: [React, Bootstrap, Python, Flask, Sympy, MongoDB]
 image: /assets/img/ALGEBREB.png
 description: Aplicación web generadora y evaluadora de ejercicios algebraicos.
 ---

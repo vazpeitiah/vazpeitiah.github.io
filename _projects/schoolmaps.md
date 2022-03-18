@@ -1,6 +1,6 @@
 ---
 name: School Maps
-tools: [PHP, JQuery, MySQL]
+tools: [HTML, CSS, Bootstrap, Rappid.js, PHP, MySQL]
 image: /assets/img/SCHOOLMAPS.png
 description: Aplicación web para realizar mapas de escuelas interactivos.
 ---

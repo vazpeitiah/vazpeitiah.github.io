@@ -1,6 +1,6 @@
 ---
 name: Ponyvet
-tools: [Node.js, Express, Handlebars, MySQL]
+tools: [Node.js, Express, Handlebars, Bootstrap, MySQL]
 image: /assets/img/PONYVET.png
 description: Aplicación web para administrar una veterinaria.
 ---
