@@ -25,9 +25,9 @@ https://i.imgur.com/1GpTfeH.png
 - Este sistema se especializa en veterinarias del ámbito rural.
 - Tiene un inventario de medicamentos y material de curación.
 - Puedes gestionar el créditos de tus clientes
+- Control de proveedores y pedidos.
 - Cuenta con una agenda para citas o consultas a domicilio.
-- Se usa de manera local, y toda la información se almacena en la computadora donde se instalé el sistema
-- Es ideal, si en la ubicación de tu clínica no se cuenta con servicio a internet o simplemente no quieres usarlo.
+- No requiere acceso a internet.
 
 <!-- ### Diseño
 
