@@ -1,0 +1,22 @@
+---
+import clsx from "clsx";
+import { languages, defaultLanguage } from "../i18n/ui";
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<div class="join">
+  {
+    Object.entries(languages).map(([key, value]) => (
+      <a
+        class={clsx("btn join-item btn-sm uppercase font-semibold", {
+          ["btn-secondary"]: lang === key,
+        })}
+        href={`/${key === defaultLanguage ? "" : key}`}
+      >
+        {value.slice(0, 2)}
+      </a>
+    ))
+  }
+</div>

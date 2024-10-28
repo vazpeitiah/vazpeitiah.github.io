@@ -1,0 +1,18 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<footer class="footer footer-center bg-primary text-primary-content p-10">
+  <aside>
+    <p class="font-bold">
+      Vladimir Azpeitia Hernández
+      <br />
+    </p>
+    <p>
+      Copyright © {new Date().getFullYear()} - {t("footer.rights")}
+    </p>
+  </aside>
+</footer>

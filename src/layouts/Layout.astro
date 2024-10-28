@@ -1,0 +1,99 @@
+---
+import "@fontsource-variable/nunito-sans";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+interface Props {
+  title: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Desarrollador Frontend de React y Flutter."
+    />
+    <meta name="keywords" content={t("seo.keywords")} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{t("seo.title")}</title>
+    <script>
+      import { DARK_THEME, LIGHT_THEME } from "../utils/config";
+
+      if (typeof window !== "undefined") {
+        function toggleTheme() {
+          const currentTheme = localStorage.getItem("theme") || DARK_THEME;
+          const newTheme =
+            currentTheme === LIGHT_THEME ? DARK_THEME : LIGHT_THEME;
+          const themeController = document.getElementById("toggleTheme");
+          themeController?.setAttribute("value", newTheme);
+          localStorage.setItem("theme", newTheme);
+        }
+
+        /* run before load page */
+        const currentTheme = localStorage.getItem("theme") || DARK_THEME;
+        const htmlTag = document.querySelector("html");
+        const sun = document.getElementById("sun");
+        const moon = document.getElementById("moon");
+        htmlTag?.setAttribute("data-theme", currentTheme);
+        if (currentTheme === LIGHT_THEME) {
+          moon?.classList.add("swap-on");
+          moon?.classList.remove("swap-off");
+          sun?.classList.add("swap-off");
+          sun?.classList.remove("swap-on");
+        } else {
+          moon?.classList.add("swap-off");
+          moon?.classList.remove("swap-on");
+          sun?.classList.add("swap-on");
+          sun?.classList.remove("swap-off");
+        }
+
+        document
+          ?.getElementById("toggleTheme")
+          ?.addEventListener("click", toggleTheme);
+      }
+    </script>
+    <script>
+      const MAX_SCROLL = 768;
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      const button = document.getElementById("scrollToTop");
+      if (button) {
+        button.addEventListener("click", scrollToTop);
+        if (window.scrollY > MAX_SCROLL) {
+          button.style.display = "block";
+        } else {
+          button.style.display = "none";
+        }
+      }
+
+      window.addEventListener("scroll", () => {
+        const button = document.getElementById("scrollToTop");
+        if (!button) return;
+        if (window.scrollY > MAX_SCROLL) {
+          button.style.display = "block";
+        } else {
+          button.style.display = "none";
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  body,
+  html {
+    font-family: "Nunito Sans Variable", sans-serif;
+    scroll-behavior: smooth;
+  }
+</style>

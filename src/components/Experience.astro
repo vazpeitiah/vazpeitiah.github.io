@@ -1,0 +1,44 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Section from "../layouts/Section.astro";
+import type { TimeLineItem } from "../utils/types";
+import TimeLine from "./TimeLine.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const items: TimeLineItem[] = [
+  {
+    date: t("experience.veradat.date"),
+    title: "Veradat",
+    subtitle: t("experience.veradat.role"),
+    description: t("experience.veradat.description"),
+    link: "https://veradat.com/",
+  },
+  {
+    date: t("experience.aku.date"),
+    title: "AKU",
+    subtitle: t("experience.aku.role"),
+    description: t("experience.aku.description"),
+    link: "https://aku.mx/",
+  },
+  {
+    date: t("experience.cic.date"),
+    title: "IPN CIC",
+    subtitle: t("experience.cic.role"),
+    description: t("experience.cic.description"),
+    link: "https://www.cic.ipn.mx/",
+  },
+  {
+    date: t("experience.escom.date"),
+    title: "IPN ESCOM",
+    subtitle: t("experience.escom.role"),
+    description: t("experience.escom.description"),
+    link: "https://www.escom.ipn.mx/",
+  },
+];
+---
+
+<Section title={t("experience.title")} htmlId="experience">
+  <TimeLine items={items} />
+</Section>

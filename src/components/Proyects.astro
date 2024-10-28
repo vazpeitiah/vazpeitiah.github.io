@@ -1,0 +1,42 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Section from "../layouts/Section.astro";
+import type { Project } from "../utils/types";
+import Card from "./Card.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const proyects: Project[] = [
+  {
+    title: "Algebreb",
+    description: t("projects.algebreb.description"),
+    image: "/maths.svg",
+    codeUrl: "https://github.com/vazpeitiah/algebreb",
+    showCode: true,
+    tags: ["React", "Bootstrap", "Flask", "SymPy"],
+  },
+  {
+    title: "Ponydesk",
+    description: t("projects.ponydesk.description"),
+    image: "/sheets.svg",
+    codeUrl: "https://github.com/vazpeitiah/ponydesk",
+    showCode: true,
+    tags: ["Java", "MySQL"],
+  },
+  {
+    title: "Ponyvet",
+    description: t("projects.ponyvet.description"),
+    image: "/pets.svg",
+    codeUrl: "https://github.com/vazpeitiah/ponyvet_code",
+    showCode: true,
+    tags: ["Express", "MySQL", "Handlebars"],
+  },
+];
+---
+
+<Section title={t("projects.title")} htmlId="proyects" className="bg-base-200">
+  <div class="grid grid-cols-3 gap-4 max-md:grid-cols-1 max-lg:grid-cols-2">
+    {proyects.map((proyect) => <Card {...proyect} />)}
+  </div>
+</Section>

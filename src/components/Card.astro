@@ -1,0 +1,66 @@
+---
+import { Icon } from "astro-icon/components";
+import type { Project } from "../utils/types";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Props extends Project {}
+
+const {
+  title,
+  description,
+  codeUrl,
+  demoUrl,
+  image,
+  showCode,
+  showDemo,
+  tags,
+} = Astro.props;
+---
+
+<div class="card card-compact bg-base-100 shadow-xl">
+  <figure>
+    <img src={image} alt="Shoes" class="h-56" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">{title}</h2>
+    <div class="flex flex-wrap gap-1">
+      {
+        tags?.map((tag) => (
+          <span class="badge badge-outline text-xs">{tag}</span>
+        ))
+      }
+    </div>
+    <p>{description}</p>
+    <div class="card-actions justify-end">
+      {
+        showCode && (
+          <a
+            class="btn btn-primary btn-outline btn-sm"
+            href={codeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="code" />
+            {t("projects.card.code")}
+          </a>
+        )
+      }
+      {
+        showDemo && (
+          <a
+            class="btn btn-primary btn-sm"
+            href={demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="network" />
+            {t("projects.card.live")}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</div>
