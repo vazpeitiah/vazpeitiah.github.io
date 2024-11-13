@@ -1,6 +1,7 @@
 ---
 import "@fontsource-variable/nunito-sans";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { GoogleAnalytics } from "astro-google-analytics";
 
 interface Props {
   title: string;
@@ -85,6 +86,7 @@ const t = useTranslations(lang);
         }
       });
     </script>
+    <GoogleAnalytics id="G-JPRTKK786T" />
   </head>
   <body>
     <slot />
