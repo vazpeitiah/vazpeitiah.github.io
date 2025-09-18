@@ -1,10 +1,16 @@
 ---
 import { Icon } from "astro-icon/components";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <button
   id="scrollToTop"
+  type="button"
   class="text-white bg-secondary p-3 fixed bottom-4 right-4 rounded-full shadow-lg z-10 transition-transform duration-300 hover:scale-110"
+  aria-label={t("goTop.ariaLabel")}
 >
   <Icon name="arrow_up" class="size-5" />
 </button>
