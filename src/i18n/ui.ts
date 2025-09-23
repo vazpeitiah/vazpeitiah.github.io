@@ -15,7 +15,7 @@ export const ui = {
     "hero.subtitle": "Desarrollador Frontend",
     "hero.description": "Más de 3 años de experiencia en React & Flutter",
     "hero.cv": "Descargar CV",
-    "hero.tagline": "Interfaces vibrantes y accesibles",
+    "hero.tagline": "Desarrollador Frontend",
     "hero.secondaryCta": "Ver proyectos",
     "hero.highlightExperience.title": "Experiencia sólida",
     "hero.highlightExperience.description": "+3 años creando productos digitales",

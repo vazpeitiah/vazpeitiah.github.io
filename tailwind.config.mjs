@@ -2,6 +2,7 @@
 
 import daisyui from "daisyui";
 import { DARK_THEME, LIGHT_THEME } from "./src/utils/config";
+import prose from "@tailwindcss/typography";
 
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -69,5 +70,5 @@ export default {
   daisyui: {
     themes: [DARK_THEME, LIGHT_THEME],
   },
-  plugins: [daisyui],
+  plugins: [daisyui, prose],
 };

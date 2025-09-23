@@ -15,7 +15,10 @@ import {
 import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => data.lang === "en" && !data.draft);
+  const posts = await getCollection(
+    "blog",
+    ({ data }) => data.lang === "en" && !data.draft
+  );
 
   return posts.map((post) => ({
     params: { slug: getPostSlug(post) },
@@ -32,11 +35,17 @@ const { Content } = await post.render();
 const lang = getLangFromUrl(Astro.url) as BlogLanguage;
 const t = useTranslations(lang);
 const readingTime = getReadingTime(post);
-const readingTimeLabel = formatReadingTimeLabel(readingTime, t("blog.readingTime"));
+const readingTimeLabel = formatReadingTimeLabel(
+  readingTime,
+  t("blog.readingTime")
+);
 const publishedDate = formatBlogDate(post.data.publishDate, lang);
 const publishedLabel = formatDateLabel(publishedDate, t("blog.publishedOn"));
 const updatedLabel = post.data.updatedDate
-  ? formatDateLabel(formatBlogDate(post.data.updatedDate, lang), t("blog.updatedOn"))
+  ? formatDateLabel(
+      formatBlogDate(post.data.updatedDate, lang),
+      t("blog.updatedOn")
+    )
   : undefined;
 const listUrl = lang === "en" ? "/en/blog" : "/blog";
 ---
@@ -48,7 +57,7 @@ const listUrl = lang === "en" ? "/en/blog" : "/blog";
 >
   <Navbar />
   <main class="bg-base-200/40 py-16">
-    <article class="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4">
+    <article class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4">
       <a
         class="inline-flex w-fit items-center gap-2 rounded-full border border-base-300 bg-base-100/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-base-content/80 transition-colors duration-200 hover:border-primary hover:text-primary"
         href={listUrl}
@@ -56,45 +65,66 @@ const listUrl = lang === "en" ? "/en/blog" : "/blog";
         ← {t("blog.backToList")}
       </a>
       <header class="flex flex-col gap-4 text-balance text-base-content">
-        <p class="text-xs font-semibold uppercase tracking-[0.4em] text-primary/80">
+        <p
+          class="text-xs font-semibold uppercase tracking-[0.4em] text-primary/80"
+        >
           BLOG · {post.data.author}
         </p>
         <h1 class="text-4xl font-bold">{post.data.title}</h1>
         <p class="text-base text-base-content/80">{post.data.description}</p>
-        <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-base-content/70">
-          <span class="rounded-full bg-base-100/80 px-3 py-1">{publishedLabel}</span>
-          <span class="rounded-full bg-base-100/80 px-3 py-1">{readingTimeLabel}</span>
-          {updatedLabel && (
-            <span class="rounded-full bg-base-100/80 px-3 py-1">{updatedLabel}</span>
-          )}
-        </div>
-        {post.data.tags.length > 0 && (
-          <div class="mt-2 flex flex-wrap gap-2">
-            {post.data.tags.map((tag) => (
-              <span class="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-primary/80">
-                <span aria-hidden="true" class="size-1.5 rounded-full bg-primary/60"></span>
-                {tag}
+        <div
+          class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-base-content/70"
+        >
+          <span class="rounded-full bg-base-100/80 px-3 py-1"
+            >{publishedLabel}</span
+          >
+          <span class="rounded-full bg-base-100/80 px-3 py-1"
+            >{readingTimeLabel}</span
+          >
+          {
+            updatedLabel && (
+              <span class="rounded-full bg-base-100/80 px-3 py-1">
+                {updatedLabel}
               </span>
-            ))}
-          </div>
-        )}
+            )
+          }
+        </div>
+        {
+          post.data.tags.length > 0 && (
+            <div class="mt-2 flex flex-wrap gap-2">
+              {post.data.tags.map((tag) => (
+                <span class="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-primary/80">
+                  <span
+                    aria-hidden="true"
+                    class="size-1.5 rounded-full bg-primary/60"
+                  />
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )
+        }
       </header>
-      {post.data.heroImage && (
-        <figure class="overflow-hidden rounded-3xl border border-base-300/60 bg-base-100/80 shadow-lg shadow-primary/20">
-          <img
-            src={post.data.heroImage}
-            alt={
-              lang === "en"
-                ? `${post.data.title} cover illustration`
-                : `Ilustración de portada del artículo ${post.data.title}`
-            }
-            loading="lazy"
-            decoding="async"
-            class="h-full w-full object-cover"
-          />
-        </figure>
-      )}
-      <div class="prose prose-base max-w-none prose-headings:font-semibold prose-pre:bg-base-200/80 prose-pre:text-base-content">
+      {
+        post.data.heroImage && (
+          <figure class="overflow-hidden rounded-3xl border border-base-300/60 bg-base-100/80 shadow-lg shadow-primary/20">
+            <img
+              src={post.data.heroImage}
+              alt={
+                lang === "en"
+                  ? `${post.data.title} cover illustration`
+                  : `Ilustración de portada del artículo ${post.data.title}`
+              }
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
+          </figure>
+        )
+      }
+      <div
+        class="prose prose-base max-w-none prose-headings:font-semibold prose-pre:bg-base-200/80 prose-pre:text-base-content"
+      >
         <Content />
       </div>
     </article>

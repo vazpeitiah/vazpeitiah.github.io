@@ -9,17 +9,19 @@ import { getPostSlug, type BlogLanguage } from "../../../utils/blog";
 
 const lang = getLangFromUrl(Astro.url) as BlogLanguage;
 const t = useTranslations(lang);
-const posts = (await getCollection("blog", ({ data }) => data.lang === lang && !data.draft)).sort(
-  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
-);
+const posts = (
+  await getCollection("blog", ({ data }) => data.lang === lang && !data.draft)
+).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 ---
 
 <Layout title={t("blog.title") ?? "Blog"} description={t("blog.description")}>
   <Navbar />
-  <main class="bg-base-200/40 py-16">
+  <main class="bg-base-200/40 py-16 min-h-screen">
     <section class="mx-auto flex w-full max-w-5xl flex-col gap-12 px-4">
       <header class="flex flex-col gap-4 text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.4em] text-primary/80">
+        <p
+          class="text-xs font-semibold uppercase tracking-[0.4em] text-primary/80"
+        >
           BLOG
         </p>
         <h1 class="text-4xl font-bold text-balance text-base-content">
@@ -29,17 +31,22 @@ const posts = (await getCollection("blog", ({ data }) => data.lang === lang && !
           {t("blog.description")}
         </p>
       </header>
-      {posts.length === 0 ? (
-        <p class="rounded-3xl border border-dashed border-base-300 bg-base-100/80 p-8 text-center text-base text-base-content/70">
-          {t("blog.empty")}
-        </p>
-      ) : (
-        <div class="grid gap-8 md:grid-cols-2">
-          {posts.map((post) => (
-            <BlogCard post={post} href={`/${lang === "en" ? "en/" : ""}blog/${getPostSlug(post)}`} />
-          ))}
-        </div>
-      )}
+      {
+        posts.length === 0 ? (
+          <p class="rounded-3xl border border-dashed border-base-300 bg-base-100/80 p-8 text-center text-base text-base-content/70">
+            {t("blog.empty")}
+          </p>
+        ) : (
+          <div class="grid gap-8 md:grid-cols-2">
+            {posts.map((post) => (
+              <BlogCard
+                post={post}
+                href={`/${lang === "en" ? "en/" : ""}blog/${getPostSlug(post)}`}
+              />
+            ))}
+          </div>
+        )
+      }
     </section>
   </main>
   <Footer />
