@@ -20,53 +20,77 @@ const {
 } = Astro.props;
 ---
 
-<div class="card card-compact bg-base-100 shadow-xl">
-  <figure>
+<div class="group relative flex h-full flex-col overflow-hidden rounded-[2.25rem] border border-base-300/50 bg-base-100/75 p-6 shadow-xl shadow-primary/10 backdrop-blur transition-all duration-500 ease-out hover:-translate-y-2 hover:border-primary/40 hover:shadow-glow">
+  <span
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+    style="background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.14), transparent 55%), radial-gradient(circle at 80% 0%, rgba(236, 72, 153, 0.12), transparent 65%);"
+  ></span>
+  <span
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary/70 via-secondary/60 to-accent/70"
+  ></span>
+  <figure class="relative mb-6 flex h-44 items-center justify-center overflow-hidden rounded-2xl border border-base-300/40 bg-gradient-to-br from-primary/10 via-base-100/60 to-secondary/10">
+    <span
+      aria-hidden="true"
+      class="pointer-events-none absolute -top-8 left-1/2 h-24 w-24 -translate-x-1/2 rounded-full bg-primary/20 blur-2xl"
+    ></span>
     <img
       src={image}
-      alt={lang === "en" ? `${title} project illustration` : `Ilustración del proyecto ${title}`}
-      class="h-56"
+      alt={
+        lang === "en"
+          ? `${title} project illustration`
+          : `Ilustración del proyecto ${title}`
+      }
+      class="h-28 w-28 object-contain drop-shadow-xl motion-safe:animate-float-soft"
       loading="lazy"
       decoding="async"
     />
   </figure>
-  <div class="card-body">
-    <h2 class="card-title">{title}</h2>
-    <div class="flex flex-wrap gap-1">
+  <div class="relative flex flex-col gap-4">
+    <h2 class="text-xl font-bold text-balance text-base-content">
+      <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+        {title}
+      </span>
+    </h2>
+    <div class="flex flex-wrap gap-2">
       {
         tags?.map((tag) => (
-          <span class="badge badge-outline text-xs">{tag}</span>
+          <span class="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary/80">
+            <span aria-hidden="true" class="size-1.5 rounded-full bg-primary/60"></span>
+            {tag}
+          </span>
         ))
       }
     </div>
-    <p>{description}</p>
-    <div class="card-actions justify-end">
-      {
-        showCode && (
-          <a
-            class="btn btn-primary btn-outline btn-sm"
-            href={codeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="code" />
-            {t("projects.card.code")}
-          </a>
-        )
-      }
-      {
-        showDemo && (
-          <a
-            class="btn btn-primary btn-sm"
-            href={demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="network" />
-            {t("projects.card.live")}
-          </a>
-        )
-      }
-    </div>
+    <p class="text-sm leading-relaxed text-base-content/80">{description}</p>
+  </div>
+  <div class="relative mt-auto flex flex-wrap items-center justify-end gap-2 pt-6">
+    {
+      showCode && (
+        <a
+          class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-base-100/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary/80 transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-content"
+          href={codeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="code" class="size-4" />
+          {t("projects.card.code")}
+        </a>
+      )
+    }
+    {
+      showDemo && (
+        <a
+          class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-secondary to-accent px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary-content shadow-lg shadow-primary/40 transition-transform duration-300 hover:-translate-y-0.5"
+          href={demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="network" class="size-4" />
+          {t("projects.card.live")}
+        </a>
+      )
+    }
   </div>
 </div>
