@@ -12,6 +12,10 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-12px)" },
         },
+        "float-soft": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-6px)" },
+        },
         "fade-in-up": {
           "0%": { opacity: "0", transform: "translateY(24px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
@@ -26,12 +30,36 @@ export default {
             transform: "scale(1.05)",
           },
         },
+        blob: {
+          "0%, 100%": {
+            transform: "translate3d(0, 0, 0) scale(1)",
+          },
+          "33%": {
+            transform: "translate3d(14px, -20px, 0) scale(1.05)",
+          },
+          "66%": {
+            transform: "translate3d(-18px, 16px, 0) scale(0.95)",
+          },
+        },
+        orbit: {
+          "0%": { transform: "rotate(0deg) translateY(-6px)" },
+          "50%": { transform: "rotate(180deg) translateY(6px)" },
+          "100%": { transform: "rotate(360deg) translateY(-6px)" },
+        },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
       },
       animation: {
         float: "float 6s ease-in-out infinite",
         "float-slow": "float 9s ease-in-out infinite",
+        "float-soft": "float-soft 7s ease-in-out infinite",
         "fade-in-up": "fade-in-up 0.8s ease-out both",
         "pulse-glow": "pulse-glow 14s ease-in-out infinite",
+        blob: "blob 16s ease-in-out infinite",
+        orbit: "orbit 18s linear infinite",
+        shimmer: "shimmer 2.8s ease-in-out infinite",
       },
       boxShadow: {
         glow: "0 20px 45px -20px rgba(14, 165, 233, 0.45)",

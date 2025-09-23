@@ -13,38 +13,50 @@ const { title, className, htmlId } = Astro.props;
 <section
   id={htmlId}
   class={clsx(
-    "relative isolate flex min-h-screen w-full justify-center overflow-hidden bg-base-100 px-4 py-16 lg:px-0 lg:py-24",
+    "relative isolate overflow-hidden px-4 py-24 sm:py-28",
     className
   )}
   aria-labelledby={`${htmlId}-title`}
 >
-  <span
+  <div
     aria-hidden="true"
-    class="pointer-events-none absolute inset-x-12 top-12 -z-10 h-56 rounded-full bg-gradient-to-r from-primary/15 via-secondary/10 to-primary/15 blur-3xl"
-  ></span>
-  <span
+    class="absolute inset-0 -z-20 bg-gradient-to-b from-base-200/80 via-base-100 to-base-200/70"
+  ></div>
+  <div
     aria-hidden="true"
-    class="pointer-events-none absolute -bottom-32 left-8 -z-10 h-72 w-72 rounded-full bg-secondary/15 blur-3xl motion-safe:animate-pulse-glow"
-  ></span>
-  <div class="relative z-10 flex w-full max-w-5xl flex-col items-center gap-12">
-    <div class="flex w-full flex-col items-center gap-4 text-center">
-      <div class="relative inline-flex items-center justify-center">
-        <span
-          aria-hidden="true"
-          class="absolute inset-x-4 top-1/2 -z-10 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-primary/40 to-transparent"
-        ></span>
-        <h1
-          id={`${htmlId}-title`}
-          class="px-6 text-4xl font-bold text-balance text-base-content sm:text-5xl"
-        >
-          <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-            {title}
-          </span>
-        </h1>
+    class="pointer-events-none absolute inset-0 -z-10 opacity-40"
+    style="background-image: radial-gradient(45% 45% at 15% 20%, rgba(59, 130, 246, 0.22), transparent 70%), radial-gradient(45% 45% at 80% 10%, rgba(236, 72, 153, 0.2), transparent 70%), radial-gradient(30% 30% at 80% 85%, rgba(56, 189, 248, 0.18), transparent 75%);"
+  ></div>
+  <div class="relative mx-auto w-full max-w-6xl">
+    <div class="absolute inset-x-8 -top-10 -z-10 h-40 rounded-full bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 blur-3xl"></div>
+    <div class="group relative overflow-hidden rounded-[2.75rem] border border-base-300/50 bg-base-100/75 p-10 shadow-2xl shadow-primary/10 backdrop-blur">
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.12),rgba(255,255,255,0))] opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+      ></span>
+      <div class="relative flex w-full flex-col items-center gap-12">
+        <div class="flex w-full flex-col items-center gap-6 text-center">
+          <div class="relative inline-flex flex-col items-center gap-4">
+            <span
+              aria-hidden="true"
+              class="pointer-events-none inline-flex h-12 items-center justify-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-6 text-xs font-semibold uppercase tracking-[0.4em] text-primary/80"
+            >
+              {title}
+            </span>
+            <h1
+              id={`${htmlId}-title`}
+              class="text-3xl font-black text-balance text-base-content sm:text-4xl"
+            >
+              <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                {title}
+              </span>
+            </h1>
+          </div>
+        </div>
+        <div class="flex w-full flex-col gap-10">
+          <slot />
+        </div>
       </div>
-    </div>
-    <div class="flex w-full flex-col gap-10">
-      <slot />
     </div>
   </div>
 </section>
