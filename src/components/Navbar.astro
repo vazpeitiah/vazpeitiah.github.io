@@ -19,12 +19,46 @@ const blogPath = translatePath("/blog");
   class="w-full sticky top-0 flex items-center justify-center z-10 bg-base-100 shadow-md px-2 lg:px-0"
 >
   <div class="navbar max-w-5xl rounded-box">
-    <a href={homePath} class="flex-1 gap-2">
-      <Icon name="code" class="size-6" />
-      <h1 class="text-lg font-bold">Vladimir Azpeitia</h1>
-    </a>
-    <div class="flex-none">
-      <ul class="menu menu-horizontal px-1 max-md:hidden">
+    <div class="navbar-start">
+      <a href={homePath} class="flex items-center gap-2">
+        <Icon name="code" class="size-6" />
+        <h1 class="text-lg font-bold">Vladimir Azpeitia</h1>
+      </a>
+    </div>
+    <div class="navbar-end items-center gap-2">
+      <div class="dropdown dropdown-end md:hidden">
+        <div
+          tabindex="0"
+          role="button"
+          class="btn btn-ghost btn-square"
+          aria-label={t("navbar.menu")}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-6"
+            aria-hidden="true"
+          >
+            <path d="M4 6.75A.75.75 0 0 1 4.75 6h14.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 6.75Zm0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 12Zm.75 4.5a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 0-1.5H4.75Z" />
+          </svg>
+        </div>
+        <ul
+          tabindex="0"
+          class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <a href="#experience"> {t("navbar.experience")} </a>
+          </li>
+          <li>
+            <a href="#proyects"> {t("navbar.projects")} </a>
+          </li>
+          <li>
+            <a href={blogPath}>{t("navbar.blog")}</a>
+          </li>
+        </ul>
+      </div>
+      <ul class="menu menu-horizontal px-1 hidden md:flex">
         <li>
           <a href="#experience"> {t("navbar.experience")} </a>
         </li>
@@ -35,7 +69,7 @@ const blogPath = translatePath("/blog");
           <a href={blogPath}>{t("navbar.blog")}</a>
         </li>
       </ul>
-      <div class="flex gap-4">
+      <div class="flex items-center gap-2">
         <ThemeSelector />
         <LanguagePicker />
       </div>
