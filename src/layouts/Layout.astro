@@ -1,7 +1,11 @@
 ---
 import "@fontsource-variable/nunito-sans";
 import { GoogleAnalytics } from "astro-google-analytics";
-import { getLangFromUrl, useTranslations, useTranslatedPath } from "../i18n/utils";
+import {
+  getLangFromUrl,
+  useTranslations,
+  useTranslatedPath,
+} from "../i18n/utils";
 import { defaultLanguage, languages } from "../i18n/ui";
 
 interface Props {
@@ -22,7 +26,9 @@ const providedTitle = title?.trim();
 const providedDescription = description?.trim();
 const providedImage = image?.trim();
 const defaultTitle = t("seo.title");
-const pageTitle = providedTitle ? `${providedTitle} | ${defaultTitle}` : defaultTitle;
+const pageTitle = providedTitle
+  ? `${providedTitle} | ${defaultTitle}`
+  : defaultTitle;
 const metaDescription = providedDescription ?? t("seo.description");
 const metaKeywords = t("seo.keywords");
 const author = t("seo.author");
@@ -42,7 +48,10 @@ if (!basePath || basePath === "//") {
 if (basePath !== "/" && basePath.endsWith("/")) {
   basePath = basePath.slice(0, -1);
 }
-const imageURL = new URL(providedImage ?? "/programming.svg", siteUrl).toString();
+const imageURL = new URL(
+  providedImage ?? "/programming.svg",
+  siteUrl
+).toString();
 const ogLocale = localeMap[lang] ?? lang;
 const alternateLocales = Object.entries(localeMap)
   .filter(([code]) => code !== lang)
@@ -100,9 +109,11 @@ const structuredData = {
     }
     <link rel="alternate" hreflang="x-default" href={defaultAlternateHref} />
     <meta property="og:locale" content={ogLocale} />
-    {alternateLocales.map((value) => (
-      <meta property="og:locale:alternate" content={value} />
-    ))}
+    {
+      alternateLocales.map((value) => (
+        <meta property="og:locale:alternate" content={value} />
+      ))
+    }
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={metaDescription} />
@@ -117,7 +128,7 @@ const structuredData = {
     <meta name="twitter:image:alt" content={pageTitle} />
     <meta name="twitter:url" content={canonicalURL.toString()} />
     <title>{pageTitle}</title>
-    <script is:inline>
+    <script>
       import { DARK_THEME, LIGHT_THEME } from "../utils/config";
 
       if (typeof window !== "undefined") {
@@ -153,7 +164,7 @@ const structuredData = {
           ?.addEventListener("click", toggleTheme);
       }
     </script>
-    <script is:inline>
+    <script>
       const MAX_SCROLL = 768;
       function scrollToTop() {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -183,7 +194,7 @@ const structuredData = {
       type="application/ld+json"
       is:inline
       set:html={JSON.stringify(structuredData, null, 2)}
-    ></script>
+    />
     <GoogleAnalytics id="G-JPRTKK786T" />
   </head>
   <body>
