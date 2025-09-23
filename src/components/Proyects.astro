@@ -35,8 +35,12 @@ const proyects: Project[] = [
 ];
 ---
 
-<Section title={t("projects.title")} htmlId="proyects" className="bg-base-200">
-  <div class="grid grid-cols-3 gap-4 max-md:grid-cols-1 max-lg:grid-cols-2">
+<Section
+  title={t("projects.title")}
+  htmlId="proyects"
+  className="bg-gradient-to-b from-base-200/70 via-base-100 to-base-200/60"
+>
+  <div class="grid w-full gap-8 sm:grid-cols-2 xl:grid-cols-3">
     {proyects.map((proyect) => <Card {...proyect} />)}
   </div>
 </Section>

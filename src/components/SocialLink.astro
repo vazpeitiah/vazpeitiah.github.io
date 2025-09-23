@@ -20,10 +20,10 @@ const accessibleLabel = labelMap[icon] ?? icon;
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    class="btn btn-ghost btn-circle"
+    class="btn btn-circle border border-transparent bg-base-100/70 text-base-content shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
     aria-label={accessibleLabel}
     title={accessibleLabel}
   >
-    <Icon name={icon} class="size-8" />
+    <Icon name={icon} class="size-6" />
   </a>
 </li>
