@@ -45,7 +45,12 @@ const { items } = Astro.props;
           >
             {item.title}
             {item.link && (
-              <a href={item.link} class="link link-primary" target="_blank">
+              <a
+                href={item.link}
+                class="link link-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Icon name="link" />
               </a>
             )}

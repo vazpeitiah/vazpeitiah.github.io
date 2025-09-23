@@ -9,7 +9,13 @@ import SocialLink from "./SocialLink.astro";
 
 <div class="hero bg-base-200 min-h-screen p-4 lg:p-0" id="hero">
   <div class="hero-content flex-col lg:flex-row-reverse max-w-5xl gap-8">
-    <img src="/programming.svg" class="max-w-lg rounded-lg max-md:w-full" />
+    <img
+      src="/programming.svg"
+      alt={t("hero.imageAlt")}
+      class="max-w-lg rounded-lg max-md:w-full"
+      loading="lazy"
+      decoding="async"
+    />
     <div>
       <h1 class="text-5xl font-bold" id="home">
         {t("hero.welcome")}
@@ -19,7 +25,12 @@ import SocialLink from "./SocialLink.astro";
         {t("hero.description")}
       </p>
       <ul class="flex gap-1 my-4">
-        <a class="btn btn-primary" href="/cv.pdf" target="_blank">
+        <a
+          class="btn btn-primary"
+          href="/cv.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {t("hero.cv")}
         </a>
         <SocialLink href="https://github.com/vazpeitiah" icon="github" />
