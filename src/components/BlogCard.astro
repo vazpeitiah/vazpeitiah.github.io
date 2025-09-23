@@ -1,0 +1,90 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import {
+  formatBlogDate,
+  formatReadingTimeLabel,
+  getPostSlug,
+  getReadingTime,
+  type BlogLanguage,
+} from "../utils/blog";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  href?: string;
+}
+
+const { post, href } = Astro.props as Props;
+const lang = getLangFromUrl(Astro.url) as BlogLanguage;
+const t = useTranslations(lang);
+
+const readingTime = getReadingTime(post);
+const readingTimeLabel = formatReadingTimeLabel(
+  readingTime,
+  t("blog.readingTime"),
+);
+const publishedAt = formatBlogDate(post.data.publishDate, lang);
+const postUrl = href ?? `/${lang === "en" ? "en/" : ""}blog/${getPostSlug(post)}`;
+---
+
+<article class="group flex h-full flex-col overflow-hidden rounded-3xl border border-base-300/60 bg-base-100/80 shadow-xl shadow-primary/10 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
+  {post.data.heroImage && (
+    <div class="relative h-48 w-full overflow-hidden bg-gradient-to-br from-primary/10 via-base-200/40 to-secondary/10">
+      <img
+        src={post.data.heroImage}
+        alt={
+          lang === "en"
+            ? `${post.data.title} cover illustration`
+            : `Ilustración de portada del artículo ${post.data.title}`
+        }
+        loading="lazy"
+        decoding="async"
+        class="h-full w-full object-cover"
+      />
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-base-100/90 to-transparent"
+      ></span>
+    </div>
+  )}
+  <div class="flex flex-1 flex-col gap-4 p-6">
+    <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-base-content/70">
+      <span class="flex items-center gap-2 rounded-full bg-base-200/50 px-3 py-1">
+        <Icon name="calendar" class="size-4" aria-hidden="true" />
+        {publishedAt}
+      </span>
+      <span class="flex items-center gap-2 rounded-full bg-base-200/50 px-3 py-1">
+        <Icon name="time" class="size-4" aria-hidden="true" />
+        {readingTimeLabel}
+      </span>
+    </div>
+    <h2 class="text-2xl font-semibold text-base-content">
+      <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+        {post.data.title}
+      </span>
+    </h2>
+    <p class="text-sm leading-relaxed text-base-content/80">
+      {post.data.description}
+    </p>
+    {post.data.tags.length > 0 && (
+      <div class="mt-2 flex flex-wrap gap-2">
+        {post.data.tags.map((tag) => (
+          <span class="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-primary/80">
+            <span aria-hidden="true" class="size-1.5 rounded-full bg-primary/60"></span>
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+    <div class="mt-auto flex justify-end">
+      <a
+        class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-secondary to-accent px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-primary-content shadow-lg shadow-primary/40 transition-transform duration-200 hover:-translate-y-0.5"
+        href={postUrl}
+      >
+        {t("blog.readMore")}
+        <Icon name="arrow-right" class="size-4" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</article>

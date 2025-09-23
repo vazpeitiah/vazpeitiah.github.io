@@ -2,17 +2,24 @@
 import { Icon } from "astro-icon/components";
 import ThemeSelector from "./ThemeSelector.astro";
 import LanguagePicker from "./LanguagePicker.astro";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import {
+  getLangFromUrl,
+  useTranslations,
+  useTranslatedPath,
+} from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+const homePath = translatePath("/");
+const blogPath = translatePath("/blog");
 ---
 
 <div
   class="w-full sticky top-0 flex items-center justify-center z-10 bg-base-100 shadow-md px-2 lg:px-0"
 >
   <div class="navbar max-w-5xl rounded-box">
-    <a href="/" class="flex-1 gap-2">
+    <a href={homePath} class="flex-1 gap-2">
       <Icon name="code" class="size-6" />
       <h1 class="text-lg font-bold">Vladimir Azpeitia</h1>
     </a>
@@ -23,6 +30,9 @@ const t = useTranslations(lang);
         </li>
         <li>
           <a href="#proyects"> {t("navbar.projects")} </a>
+        </li>
+        <li>
+          <a href={blogPath}>{t("navbar.blog")}</a>
         </li>
       </ul>
       <div class="flex gap-4">
